@@ -15,8 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 
 public class WalkingManFrame extends JFrame implements KeyListener{
-	private int dx = 10, dy = 10;
-	private int xV = 0, yV = 0;
+	// private int dx = 10, dy = 10;
 	private boolean pressed;
 	public WalkingManFrame()
 	{
@@ -27,42 +26,7 @@ public class WalkingManFrame extends JFrame implements KeyListener{
 		this.add(myMan);
 		
 		
-		Timer t1 = new Timer((1000/90), new ActionListener()
-				 {
 
-					@Override
-					public void actionPerformed(ActionEvent h) 
-					{
-					
-						if(pressed = false)
-						{
-							modDx(0);
-							modDy(0);
-							myMan.update();
-							myMan.repaint();	
-						}
-						
-						myMan.update();
-						myMan.repaint();	
-						//myMan.setDx(dx);
-						//myMan.setDy(dy);
-					}
-					
-					public void modDx(int xR)
-					{
-						dx = xR;
-						//myMan.setDx(xR);
-					}
-					
-					public void modDy(int yR)
-					{
-						dy = yR;
-						//myMan.setDy(yR);
-					}
-		}
-		);
-		
-		t1.start();
 		
 		
 		
@@ -71,44 +35,77 @@ public class WalkingManFrame extends JFrame implements KeyListener{
 			public void keyPressed(KeyEvent e)
 			{
 				pressed = true;
+				
+				// upper left
+				//if(e.getKeyCode()==87 && ((myMan.getY()) - myMan.getDy()) >= 0)
+				//{
+					
+			//	}
+				
 				// w
-				if(e.getKeyCode()==87 && (yV-dy) >= 0)
+				if(e.getKeyCode()==87 && ((myMan.getY()) - myMan.getDy()) >= 0)
 				{
-						myMan.setY(yV-=dy);
-						yV-=dy;
+						myMan.setDy(-5);
+
 					
 				}
 			
 				// s
-				if(e.getKeyCode() == 83 && (yV + dy) <= 500)
+				if(e.getKeyCode() == 83 && ((myMan.getY()) + myMan.getDy()) <= 500)
 				{
-						myMan.setY(yV+=dy);
-						yV+=dy;
+					myMan.setDy(5);
+					
 				}
 				
 				// a
-				if(e.getKeyCode()== 65 && (xV - dx) >=0) 
+				if(e.getKeyCode()== 65 && ((myMan.getX()) - myMan.getDx()) >=0) 
 				{
-						myMan.setX(xV -= dy);
-						xV-=dy;
+					myMan.setDx(-5);
 			
 				}
 				
 				// d
-				if(e.getKeyCode()== 68 && (xV + dx) <= 1000)
+				if(e.getKeyCode()== 68 && ((myMan.getX()) + myMan.getDx()) <= 1000)
 				{
-						myMan.setX(xV += dx);
-						xV += dx;
+					myMan.setDx(5);
 						
 				}
-				myMan.manLocation(xV, yV);
+			
 			}
 
 
 			@Override
-			public void keyReleased(KeyEvent arg0) {
+			public void keyReleased(KeyEvent e) {
 				
 				pressed = false;
+				if(e.getKeyCode()==87)
+				{
+						myMan.setDy(0);
+
+					
+				}
+			
+				// s
+				if(e.getKeyCode() == 83)
+				{
+					myMan.setDy(0);
+					
+				}
+				
+				// a
+				if(e.getKeyCode()== 65) 
+				{
+					myMan.setDx(0);
+			
+				}
+				
+				// d
+				if(e.getKeyCode()== 68)
+				{
+					myMan.setDx(0);
+						
+				}
+				
 			}
 
 			@Override
@@ -133,7 +130,21 @@ public class WalkingManFrame extends JFrame implements KeyListener{
 		
 		);
 	
+				Timer t1 = new Timer((1000/60), new ActionListener()
+				 {
+
+					@Override
+					public void actionPerformed(ActionEvent h) 
+					{	
+						myMan.update();	
+						
+					}
+					
+					
+		}
+		);
 		
+		t1.start();
 	}
 	
 	

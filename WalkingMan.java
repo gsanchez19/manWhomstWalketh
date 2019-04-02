@@ -8,12 +8,12 @@ import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JComponent;
 	
-public class WalkingMan extends JComponent {
+public class WalkingMan extends JComponent implements updatable {
 
 	private Ellipse2D.Double head;
 	private Rectangle body, armL, armR, legL, legR;
-	//private int dx, dy;
-	private int x, y;
+	private int dx = 5, dy = 5;
+	private int x=0, y = 0;
 	
 	public WalkingMan(int xc, int yc)
 	{
@@ -60,28 +60,29 @@ public class WalkingMan extends JComponent {
 	{
 		
 		//setLocation(getX() + dx, getY() + dy);
-		setLocation(x, y);
+		setLocation(getX() + dx, getY() + dy);
+		repaint();
 		
 	}
-	//public void setDx(int xG)
-	//{
-		//dx = xG;
-	//}
+	public void setDx(int xG)
+	{
+		dx = xG;
+	}
 	
-	//public void setDy(int yG)
-	//{
-		//dy = yG;
-	//}
+	public void setDy(int yG)
+	{
+		dy = yG;
+	}
 	
-	//public int getDx()
-	//{
-		//return dx;
-	//}
+	public int getDx()
+	{
+		return dx;
+	}
 	
-	//public int getDy()
-	//{
-		//return dy;
-	//}
+	public int getDy()
+	{
+		return dy;
+	}
 	
 	public void setX(int xh)
 	{
@@ -91,7 +92,7 @@ public class WalkingMan extends JComponent {
 	public void setY(int yh)
 	{
 		y = yh;
-		setLocation(x, y);
+		this.setLocation(x, y);
 	}
 
 	public void manLocation(int xL, int yL)
