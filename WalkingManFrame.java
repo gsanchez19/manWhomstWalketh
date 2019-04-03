@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -17,16 +18,14 @@ import javax.swing.JComboBox;
 public class WalkingManFrame extends JFrame implements KeyListener{
 	// private int dx = 10, dy = 10;
 	private boolean pressed;
+	ArrayList<Ball> ballList = new ArrayList<Ball>();
 	public WalkingManFrame()
 	{
-		WalkingMan myMan = new WalkingMan(0, 0);
+		WalkingMan myMan = new WalkingMan(50, 50);
 		JFrame walkingFrame = new JFrame();
 		
 		this.setSize(1000, 500);
 		this.add(myMan);
-		
-		
-
 		
 		
 		
@@ -70,6 +69,16 @@ public class WalkingManFrame extends JFrame implements KeyListener{
 					myMan.setDx(5);
 						
 				}
+				
+				// spacebar - fires ball
+				if(e.getKeyCode()==32)
+				{	
+					Ball newBall = new Ball(myMan.getX(), myMan.getY());
+					ballList.add(newBall);
+					add(newBall);
+					
+				}
+
 			
 			}
 
@@ -105,7 +114,7 @@ public class WalkingManFrame extends JFrame implements KeyListener{
 					myMan.setDx(0);
 						
 				}
-				
+								
 			}
 
 			@Override
@@ -143,6 +152,8 @@ public class WalkingManFrame extends JFrame implements KeyListener{
 					
 		}
 		);
+				
+				
 		
 		t1.start();
 	}

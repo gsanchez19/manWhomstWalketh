@@ -13,7 +13,7 @@ public class BallMain {
 		myFrame.setBounds(100, 100, 600, 600);
 		myFrame.setLayout(null);
 		
-		Ball myBall = new Ball();
+		Ball myBall = new Ball(5, 5);
 		myBall.setBounds(20, 40, 60, 60);
 
 		myFrame.add(myBall);
@@ -22,7 +22,7 @@ public class BallMain {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						myBall.setLocation((int)(Math.random()*4), (int)(Math.random()*4)); 
+						myBall.setLocation(myBall.getX()+2, (int)(Math.random()*4)); 
 						
 					}
 				

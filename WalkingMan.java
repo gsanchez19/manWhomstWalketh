@@ -12,8 +12,8 @@ public class WalkingMan extends JComponent implements updatable {
 
 	private Ellipse2D.Double head;
 	private Rectangle body, armL, armR, legL, legR;
-	private int dx = 5, dy = 5;
-	private int x=0, y = 0;
+	private int dx = 0, dy = 0;
+	private int x=50, y = 50;
 	
 	public WalkingMan(int xc, int yc)
 	{
@@ -60,9 +60,11 @@ public class WalkingMan extends JComponent implements updatable {
 	{
 		
 		//setLocation(getX() + dx, getY() + dy);
+		if ((getY()+dy) != 500 && (getY()+dy) != 0 && (getX()+dx) != 0 && (getX()+dx) != 1000)
+		{
 		setLocation(getX() + dx, getY() + dy);
 		repaint();
-		
+		}
 	}
 	public void setDx(int xG)
 	{
